@@ -21,11 +21,11 @@ class TodosController extends ControllerBase{
         $this->menu();
     }
 
-    #[Route('_default',name: 'home')]
+    #[Route(path: "todos/menu", name : "home")]
     public function index(){
         if(USession::exists(self::LIST_SESSION_KEY)){
             $list = USession::get(self::LIST_SESSION_KEY, []);
-            return $this->displayList($list);
+            return $this->displayList($list)    ;
         }
         $this->showMessage('Bonjour', "Todolist permet de gerer des listes", 'info', 'info circle',
             [['url' =>Router::path('todos.new'),'caption'=>'Créer une nouvelle liste','style'=>'basic inverted']]);
@@ -34,7 +34,7 @@ class TodosController extends ControllerBase{
     #[Post(path: "todos/add", name: "todos.add")]
     public function addElement(){
         $list=USession::get(self::LIST_SESSION_KEY);
-        if(URequest::filled('elements')){
+        if(URequest::filled('elements')){//Ca passe dans la boucle parce que ca prend le dessus
             $elemnts = explode("\n", URequest::post('elements'));
             foreach ($elemnts as $elm){
                 $list[] = $elm;
