@@ -1,10 +1,13 @@
 <?php
 namespace controllers;
-use Ubiquity\attributes\items\router\Route;
 use Ubiquity\attributes\items\router\Get;
 use Ubiquity\attributes\items\router\Post;
+use Ubiquity\attributes\items\router\Route;
+use Ubiquity\cache\CacheManager;
 use Ubiquity\controllers\Router;
+use Ubiquity\utils\http\URequest;
 use Ubiquity\utils\http\USession;
+
 /**
  * Controller TodosController
  * @property \Ajax\php\ubiquity\JsUtils $jquery
@@ -49,13 +52,23 @@ class TodosController extends ControllerBase{
 
     #[Get(path: "todos/delete/{index}", name : "todos.delete")]
     public function deleteElement($index){
-
+        $list=USession::get(self::LIST_SESSION_KEY);
+        if(isset($list[$index])){
+            array_splice($list, $index, 1);
+            USession::set(self::LIST_SESSION_KEY, $list);
+        }
+        $this->displayList($list);
     }
 
 
     #[Post(path: "todos/edit/{index}",name: "todos.edit")]
     public function editElement($index){
-
+        $list=USession::get(self::LIST_SESSION_KEY);
+        if(isset($list[$index])){
+            $list[$index] = URequest::post('editElement');
+            USession::set(self::LIST_SESSION_KEY, $list);
+        }
+        $this->displayList($list);
     }
 
 
@@ -87,7 +100,12 @@ class TodosController extends ControllerBase{
 
     #[Get(path: "todos/saveList", name : "todos.save")]
     public function saveList(){
+        $id = uniqid();
+        $list=USession::get(self::LIST_SESSION_KEY);
+        CacheManager::$cache->store(self::CACHE_KEY . $id, $list);
 
+        $this->showMessage("Liste Sauvegardée", $id);
+        $this->displayList($list);
     }
 
     private function menu(){
