@@ -7,6 +7,7 @@ use Ubiquity\controllers\Router;
 use Ubiquity\utils\http\USession;
 /**
  * Controller TodosController
+ * @property \Ajax\php\ubiquity\JsUtils $jquery
  */
 class TodosController extends ControllerBase{
 
@@ -20,7 +21,7 @@ class TodosController extends ControllerBase{
         $this->menu();
     }
 
-    #[Route(path: "/_default/", name : "home")]
+    #[Route('_default',name: 'home')]
     public function index(){
         if(USession::exists(self::LIST_SESSION_KEY)){
             $list = USession::get(self::LIST_SESSION_KEY, []);
@@ -32,7 +33,17 @@ class TodosController extends ControllerBase{
 
     #[Post(path: "todos/add", name: "todos.add")]
     public function addElement(){
-
+        $list=USession::get(self::LIST_SESSION_KEY);
+        if(URequest::filled('elements')){
+            $elemnts = explode("\n", URequest::post('elements'));
+            foreach ($elemnts as $elm){
+                $list[] = $elm;
+            }
+        }else{
+            $list[] = URequest::post('element');
+        }
+        USession::set(self::LIST_SESSION_KEY, $list);
+        $this->displayList($list);
     }
 
 
@@ -67,7 +78,7 @@ class TodosController extends ControllerBase{
             $this->displayList(USession::get(self::LIST_SESSION_KEY));
         }else if(USession::exists(self::LIST_SESSION_KEY)) {
             $this->showMessage("Nouvelle Liste", "Une liste existe déjà. Voulez vous la vider ?", "", "",
-                [['url' =>Router::path('todos.new/1'),'caption'=>'Créer une nouvelle liste','style'=>'basic inverted'],
+                [['url' =>Router::path('todos.new'),'caption'=>'Créer une nouvelle liste','style'=>'basic inverted'],
                     ['url' =>Router::path('todos.menu'),'caption'=>'Annuler','style'=>'basic inverted']]);
             $this->displayList(USession::get(self::LIST_SESSION_KEY));
         }
@@ -82,6 +93,7 @@ class TodosController extends ControllerBase{
     private function menu(){
 
         $this->loadView('TodosController/menu.html');
+
 
     }
 
