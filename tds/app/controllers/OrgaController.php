@@ -9,6 +9,12 @@ namespace controllers;
  * Controller OrgaController
  **/
 class OrgaController extends ControllerBase{
+
+    public function initialize(){
+        parent::initialize();
+        $this->repo = new ViewRepository($this, Organization::class);
+    }
+
     #[Route('orga')]
 	public function index(){
         $orgas=DAO::getAll(Organization::class,"", ['groupes.users']);
