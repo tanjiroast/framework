@@ -19,9 +19,10 @@ class OrgaController extends ControllerBase{
     {
         parent::initialize();
         $this->repo=new ViewRepository($this,Organization::class);
+
     }
 
-    #[Route('orga')]
+    #[Route(path :'orga', name: 'orga.menu')]
     public function index(){
         $this->repo->all("",false);
         //$orgas=DAO::getAll(Organization::class, "",false);
