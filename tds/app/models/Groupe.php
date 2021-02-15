@@ -5,6 +5,7 @@ use Ubiquity\attributes\items\Id;
 use Ubiquity\attributes\items\Column;
 use Ubiquity\attributes\items\Validator;
 use Ubiquity\attributes\items\Table;
+use Ubiquity\attributes\items\OneToMany;
 use Ubiquity\attributes\items\ManyToOne;
 use Ubiquity\attributes\items\JoinColumn;
 use Ubiquity\attributes\items\ManyToMany;
@@ -13,7 +14,7 @@ use Ubiquity\attributes\items\JoinTable;
 #[Table(name: "groupe")]
 class Groupe{
 
-    #[Id]
+    #[Id()]
     #[Column(name: "id",dbType: "int(11)")]
     #[Validator(type: "id",constraints: ["autoinc"=>true])]
     private $id;
@@ -96,7 +97,7 @@ class Groupe{
     }
 
     public function __toString(){
-        return $this->name.'';
+        return $this->name;
     }
 
 }
