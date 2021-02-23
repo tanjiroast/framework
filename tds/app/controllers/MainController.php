@@ -12,12 +12,16 @@ use Ubiquity\orm\DAO;
  */
 class MainController extends ControllerBase{
     use WithAuthTrait;
+
+    #[Autowired]
+    private OrgaRepository $repo;
+
     #[Route('_default', name:'home')]
     public function index(){
         $this->jquery->getHref('a[data-target]', parameters:['historize'=>false,
             'hashLoader'=>'internal','listenerOn'=>'body']);
         $this->jquery->renderView("MainController/index.html");
-        //$this->loadView("MainController/index.html");
+        //$this->loadView(" MainController/index.html");
     }
 
     protected function getAuthController(): AuthController
@@ -36,6 +40,10 @@ class MainController extends ControllerBase{
     public function userDetails($id){
         $user=DAO::getById(User::class,[$id],true);
         echo "Organisation :".$user->getOrganization();
+    }
+
+    public function setRepo(OrgaRepository $repo): void {
+        $this->repo = $repo;
     }
 
 }
