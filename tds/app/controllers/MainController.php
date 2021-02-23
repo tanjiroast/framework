@@ -5,6 +5,7 @@ use models\User;
 use services\dao\OrgaRepository;
 use services\ui\UIGroups;
 use Ubiquity\attributes\items\di\Autowired;
+use Ubiquity\attributes\items\router\Get;
 use Ubiquity\attributes\items\router\Route;
 use Ubiquity\controllers\auth\AuthController;
 use Ubiquity\controllers\auth\WithAuthTrait;
@@ -66,5 +67,11 @@ class MainController extends ControllerBase{
         $groups=DAO::getAll(Group::class,'idOrganization= ?', false, [$idOrga]);
         $this->uiService->listGroups($groups);
         $this->jquery->renderView();
+    }
+
+    #[Get('new/user', name: 'new.user')]
+    public function newUser(){
+        $this->uiService->newUser('frm-user');
+        $this->jquery->renderView('main/vForm.html');
     }
 }
