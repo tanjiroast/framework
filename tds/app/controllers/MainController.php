@@ -26,7 +26,7 @@ class MainController extends ControllerBase{
     public function initialize()
     {
         parent::initialize();
-        //$this->uiService
+        $this->uiService = new UIGroups($this);
     }
 
     /**
