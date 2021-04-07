@@ -7,7 +7,6 @@ use Ubiquity\attributes\items\Validator;
 use Ubiquity\attributes\items\Table;
 use Ubiquity\attributes\items\ManyToOne;
 use Ubiquity\attributes\items\JoinColumn;
-use Ubiquity\attributes\items\OneToMany;
 
 #[Table(name: "order")]
 class Order{
@@ -51,10 +50,6 @@ class Order{
 	#[ManyToOne()]
 	#[JoinColumn(className: "models\\Employee",name: "idEmployee",nullable: true)]
 	private $employee;
-
-	
-	#[OneToMany(mappedBy: "order",className: "models\\Orderdetail")]
-	private $orderdetails;
 
 	
 	#[ManyToOne()]
@@ -128,18 +123,6 @@ class Order{
 
 	public function setEmployee($employee){
 		$this->employee=$employee;
-	}
-
-	public function getOrderdetails(){
-		return $this->orderdetails;
-	}
-
-	public function setOrderdetails($orderdetails){
-		$this->orderdetails=$orderdetails;
-	}
-
-	 public function addOrderdetail($orderdetail){
-		$this->orderdetails[]=$orderdetail;
 	}
 
 	public function getTimeslot(){

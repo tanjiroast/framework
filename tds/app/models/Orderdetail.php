@@ -1,25 +1,20 @@
 <?php
 namespace models;
 
-use Ubiquity\attributes\items\Id;
 use Ubiquity\attributes\items\Column;
 use Ubiquity\attributes\items\Validator;
 use Ubiquity\attributes\items\Table;
-use Ubiquity\attributes\items\ManyToOne;
-use Ubiquity\attributes\items\JoinColumn;
 
 #[Table(name: "orderdetail")]
 class Orderdetail{
 	
-	#[Id()]
 	#[Column(name: "idOrder",dbType: "int(11)")]
-	#[Validator(type: "id",constraints: ["autoinc"=>true])]
+	#[Validator(type: "notNull",constraints: [])]
 	private $idOrder;
 
 	
-	#[Id()]
 	#[Column(name: "idProduct",dbType: "int(11)")]
-	#[Validator(type: "id",constraints: ["autoinc"=>true])]
+	#[Validator(type: "notNull",constraints: [])]
 	private $idProduct;
 
 	
@@ -31,16 +26,6 @@ class Orderdetail{
 	#[Column(name: "prepared",dbType: "tinyint(1)")]
 	#[Validator(type: "isBool",constraints: ["notNull"=>true])]
 	private $prepared;
-
-	
-	#[ManyToOne()]
-	#[JoinColumn(className: "models\\Order",name: "idOrder")]
-	private $order;
-
-	
-	#[ManyToOne()]
-	#[JoinColumn(className: "models\\Product",name: "idProduct")]
-	private $product;
 
 	public function getIdOrder(){
 		return $this->idOrder;
@@ -72,22 +57,6 @@ class Orderdetail{
 
 	public function setPrepared($prepared){
 		$this->prepared=$prepared;
-	}
-
-	public function getOrder(){
-		return $this->order;
-	}
-
-	public function setOrder($order){
-		$this->order=$order;
-	}
-
-	public function getProduct(){
-		return $this->product;
-	}
-
-	public function setProduct($product){
-		$this->product=$product;
 	}
 
 	 public function __toString(){

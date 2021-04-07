@@ -10,7 +10,7 @@
     <div class="two fields">
         {% block _fieldLogin %}
         <div class="field required">
-            <label for="{{loginInputName}}">{{loginLabel}}</label>
+            <label for="{{loginInputName}}" style="color: white">{{loginLabel}}</label>
             <div class="ui input">
                 {% block _login %}
                 <input id="{{loginInputName}}" name="{{loginInputName}}" type="text" placeholder="{{loginLabel}}">
@@ -20,10 +20,10 @@
         {% endblock %}
         {% block _fieldPassword %}
         <div class="field required">
-            <label for="{{passwordInputName}}">{{passwordLabel}}</label>
+            <label for="{{passwordInputName}}" style="color: white">{{passwordLabel}}</label>
             <div class="ui input">
                 {% block _password %}
-                <input id="{{passwordInputName}}" name="{{passwordInputName}}" type="password">
+                <input id="{{passwordInputName}}" name="{{passwordInputName}}" type="password" placeholder="{{passwordLabel}}">
                 {% endblock %}
             </div>
         </div>

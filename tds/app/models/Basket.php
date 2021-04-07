@@ -5,7 +5,6 @@ use Ubiquity\attributes\items\Id;
 use Ubiquity\attributes\items\Column;
 use Ubiquity\attributes\items\Validator;
 use Ubiquity\attributes\items\Table;
-use Ubiquity\attributes\items\OneToMany;
 use Ubiquity\attributes\items\ManyToOne;
 use Ubiquity\attributes\items\JoinColumn;
 
@@ -26,10 +25,6 @@ class Basket{
 	#[Column(name: "dateCreation",dbType: "timestamp")]
 	#[Validator(type: "notNull",constraints: [])]
 	private $dateCreation;
-
-	
-	#[OneToMany(mappedBy: "basket",className: "models\\Basketdetail")]
-	private $basketdetails;
 
 	
 	#[ManyToOne()]
@@ -58,18 +53,6 @@ class Basket{
 
 	public function setDateCreation($dateCreation){
 		$this->dateCreation=$dateCreation;
-	}
-
-	public function getBasketdetails(){
-		return $this->basketdetails;
-	}
-
-	public function setBasketdetails($basketdetails){
-		$this->basketdetails=$basketdetails;
-	}
-
-	 public function addBasketdetail($basketdetail){
-		$this->basketdetails[]=$basketdetail;
 	}
 
 	public function getUser(){

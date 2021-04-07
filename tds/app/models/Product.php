@@ -43,22 +43,9 @@ class Product{
 	private $promotion;
 
 	
-	#[OneToMany(mappedBy: "product",className: "models\\Basketdetail")]
-	private $basketdetails;
-
-	
-	#[OneToMany(mappedBy: "product",className: "models\\Orderdetail")]
-	private $orderdetails;
-
-	
 	#[ManyToOne()]
 	#[JoinColumn(className: "models\\Section",name: "idSection")]
 	private $section;
-
-	
-	#[ManyToMany(targetEntity: "models\\Product",inversedBy: "associatedproducts")]
-	#[JoinTable(name: "associatedproduct",inverseJoinColumns: ["name"=>"idAssoProduct","referencedColumnName"=>"id"])]
-	private $associatedproducts;
 
 	
 	#[ManyToMany(targetEntity: "models\\Product",inversedBy: "packs")]
@@ -113,48 +100,12 @@ class Product{
 		$this->promotion=$promotion;
 	}
 
-	public function getBasketdetails(){
-		return $this->basketdetails;
-	}
-
-	public function setBasketdetails($basketdetails){
-		$this->basketdetails=$basketdetails;
-	}
-
-	 public function addBasketdetail($basketdetail){
-		$this->basketdetails[]=$basketdetail;
-	}
-
-	public function getOrderdetails(){
-		return $this->orderdetails;
-	}
-
-	public function setOrderdetails($orderdetails){
-		$this->orderdetails=$orderdetails;
-	}
-
-	 public function addOrderdetail($orderdetail){
-		$this->orderdetails[]=$orderdetail;
-	}
-
 	public function getSection(){
 		return $this->section;
 	}
 
 	public function setSection($section){
 		$this->section=$section;
-	}
-
-	public function getAssociatedproducts(){
-		return $this->associatedproducts;
-	}
-
-	public function setAssociatedproducts($associatedproducts){
-		$this->associatedproducts=$associatedproducts;
-	}
-
-	 public function addAssociatedproduct($associatedproduct){
-		$this->associatedproducts[]=$associatedproduct;
 	}
 
 	public function getPacks(){
