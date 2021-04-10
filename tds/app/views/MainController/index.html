@@ -8,7 +8,7 @@
             <div class="ui attached inverted segment" >
                 <div class="ui divided inverted list">
                     <div class="item">
-                        <a href="{{path('order')}}" class="ui teal basic button" style="width:300px">Mes commandes </a>
+                        <a href="{{path('orders')}}" class="ui teal basic button" style="width:300px">Mes commandes </a>
                         <div id="store" style="margin-top: 3px"></div>
                     </div>
 
@@ -25,11 +25,11 @@
             <div class="ui attached inverted segment">
                 <div class="ui divided inverted list">
                     <div class="item">
-                        <a class="ui green basic button" ></i> Nouveau</a>
+                        <a href="{{ path('newBasket') }}" class="ui green basic button" ></i> Nouveau</a>
                         <div id="paniers" style="margin-top: 3px"></div>
                     </div>
                     <div class="item">
-                        <a class="ui teal basic button" style=""></i> Mes paniers</a>
+                        <a href="{{ path('baskets') }}" class="ui teal basic button" style=""></i> Mes paniers</a>
                     </div>
                 </div>
             </div>

@@ -41,7 +41,7 @@ class MainController extends ControllerBase{
         $this->repo = $repo;
     }
 
-    #[Route ('order', name:'order')]
+    #[Route ('orders', name:'orders')]
     public function orders(){
         $orders = DAO::getAll(Order::class, 'idUser= ?', false, [USession::get("idUser")]);
         $this->loadDefaultView(['orders'=>$orders]);
