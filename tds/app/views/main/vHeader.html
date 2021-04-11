@@ -14,11 +14,10 @@
 </head>
 <body>
 {%  block menu %}
-<div class="ui basic inverted segment">
-	<div class="ui container">
-		<div class="ui inverted secondary menu">
-			<a href="MainController" class="item">Home</a>
-			<div class="item">{{ _userInfo|raw }}</div>
+	<div class="ui red two item menu">
+		<a class="active red item" href="MainController" class="item">Home</a>
+		<div class="item">
+			{{ _userInfo|raw }}
 		</div>
 	</div>
 </div>

@@ -3,15 +3,14 @@
     <div class="ui two column inverted grid">
         <div class="column">
             <div class="ui horizontal inverted divider">
-                <h1 style="color:red">Store</h1>
+                <h1 style="color:#EBDDEA">Store</h1>
             </div>
             <div class="ui attached inverted segment" >
                 <div class="ui divided inverted list">
                     <div class="item">
-                        <a href="{{path('orders')}}" class="ui teal basic button" style="width:300px">Mes commandes </a>
+                        <a href="{{path('order')}}" class="ui teal basic button" style="width:300px">Mes commandes </a>
                         <div id="store" style="margin-top: 3px"></div>
                     </div>
-
                     <div class="item">
                         <a href="{{path('store')}}" class="ui teal basic button" style="width:300px">Parcourir le store </a>
                     </div>
@@ -20,7 +19,7 @@
         </div>
         <div class="column">
             <div class="ui horizontal inverted divider">
-                <h1 style="color:red">Panier</h1>
+                <h1 style="color:#EBDDEA">Panier</h1>
             </div>
             <div class="ui attached inverted segment">
                 <div class="ui divided inverted list">
@@ -29,7 +28,8 @@
                         <div id="paniers" style="margin-top: 3px"></div>
                     </div>
                     <div class="item">
-                        <a href="{{ path('baskets') }}" class="ui teal basic button" style=""></i> Mes paniers</a>
+                        <a href="{{ path('basket') }}"class="ui green basic button">Mon panier
+                        </a>
                     </div>
                 </div>
             </div>

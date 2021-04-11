@@ -1,5 +1,6 @@
 <?php
 namespace controllers;
+use classes\baskets;
 use models\Basket;
 use models\Order;
 use models\Product;
@@ -41,9 +42,10 @@ class MainController extends ControllerBase{
         $this->repo = $repo;
     }
 
-    #[Route ('orders', name:'orders')]
+    #[Route ('order', name:'order')]
     public function orders(){
-        $orders = DAO::getAll(Order::class, 'idUser= ?', false, [USession::get("idUser")]);
+        $idUser=$this->getAuthController()->_getActiveUser()->getId();
+        $orders = DAO::getAll(Order::class, 'idUser= ?', false, [$idUser]);
         $this->loadDefaultView(['orders'=>$orders]);
     }
 
@@ -85,10 +87,17 @@ class MainController extends ControllerBase{
         $this->loadDefaultView(['section'=>$section, 'listSection'=>$listsections, 'product'=>$product, 'productid'=>$productid]);
     }
 
-    #[Route ('basket/add/{id}', name:'basket')]
-    public function basketdefault($id){
-        $product = DAO::getById(Product::class,$id,['sections']);
-        $this->loadDefaultView(['product'=>$product]);
+    #[Route ('Baskets', name:'baskets')]
+    public function listBaskets(){
+        $idUser=$this->getAuthController()->_getActiveUser()->getId();
+        $baskets = DAO::getAll(Basket::class, 'idUser= ?', false, [$idUser]);
+        $nbBaskets = DAO::count(Basket::class, 'idUser= ?', [USession::get("idUser")]);
+        $BasketSession = USession::get('defaultBasket');
+        $products = $BasketSession->getProducts();
+        $quantity = $BasketSession->getQuantity();
+        $totalDiscount = $BasketSession->getTotalDiscount();
+        $fullPrice = $BasketSession->getTotalFullPrice();
+        $this->loadDefaultView(['baskets'=>$baskets, 'nbBaskets'=>$nbBaskets, 'products'=>$products, 'fullPrice'=> $fullPrice, 'totalDiscount'=>$totalDiscount, 'quantity'=>$quantity]);
     }
 
 }
