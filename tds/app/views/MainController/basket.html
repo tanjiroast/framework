@@ -1,14 +1,14 @@
 <!--View associated to basket action of MainController controller -->
+<h1>Paniers</h1>
 <div class="ui grid ">
-    <div class="ui wide column">
-        <div class="ui top attached header">Mes paniers</div>
-        <div class="ui attached segment">
-            {% for basket in basket %}
-            <li>
+    <div class="ui wide inverted column">
+        <div class="ui attached inverted segment">
+            <table>
+                {% for basket in basket %}
                 {{ basket.name }}
-                <a class="ui button" href='{{ path('basketInfo',[basket.id]) }}'>Sélectioner</a>
-            </li>
-            {% endfor %}
+                <a class="ui basic teal button" href='{{ path('basketInfo',[basket.id]) }}'>Sélectioner</a>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>

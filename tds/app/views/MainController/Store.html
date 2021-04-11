@@ -11,20 +11,17 @@
         </div>
     </div>
     <div class="twelve wide column">
-            <legend>Promotions</legend>
-            <table class="ui very basic collapsing celled table">
-                <tr>
-                    {% for prod in listProm %}
-                    <td>
-                        <img src="{{ prod.image }}" alt="alternatetext" width="100" height="80">
-                        <div>{{ prod.name }}</div>
-                        <strong>{{prod.price}}€</strong>
-                        <span class="ui red text"> {{ prod.promotion }}% </span>
-                    </td>
-                    {% endfor %}
-                </tr>
-            </table>
-            <legend>Consultés récemment</legend>
-            <h5>Titre de la section</h5>
+        <legend>Promotions</legend>
+        <table class="ui very basic collapsing celled table">
+            <tr>
+                {% for prod in listProm %}
+                <td>
+                    <div>{{ prod.name }}</div>
+                    <strong>{{prod.price}}€</strong>
+                    <span class="ui red text"> {{ prod.promotion }}% </span>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
     </div>
 </div>

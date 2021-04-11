@@ -4,7 +4,7 @@
         <div class="ui vertical fluid inverted menu">
             {% for section in listSection %}
             <a href="{{ path('section', [section.id]) }}" class="ui item"> {{ section.name }}
-                    <span class="floating ui teal label"> {{ section.products|length }}</span>
+                <span class="floating ui teal label"> {{ section.products|length }}</span>
             </a>
             {% endfor %}
             <br>
@@ -15,13 +15,13 @@
         <div class="ui equal width center aligned padded grid">
             {% for prod in product %}
             <div class="four wide column">
-                    <a href="{{ path('product', [section.id, prod.id]) }}" style="color:black">
+                <a href="{{ path('product', [section.id, prod.id]) }}" style="color:black">
                     <img src="/public/assets/img/{{ prod.image }}.jpg" alt="alternatetext" width="100" height="80">
-                    </a>
-                    <div>{{ prod.name }}</div>
-                    <strong>{{prod.price}}€</strong>
-                    <a href="{{ path('defaultBasket', [article.id]) }}" class="ui circular mini icon button right floated"><i class="shopping cart icon"></i></a>
-                    <a href="{{ path('product', [section.id, prod.id]) }}" class="ui circular mini icon inverted button right floated"><i class="search icon"></i></a>
+                </a>
+                <div>{{ prod.name }}</div>
+                <strong>{{prod.price}}€</strong>
+                <a href="{{ path('defaultBasket', [article.id]) }}" class="ui circular mini icon button right floated"><i class="shopping cart icon"></i></a>
+                <a href="{{ path('product', [section.id, prod.id]) }}" class="ui circular mini icon inverted button right floated"><i class="search icon"></i></a>
             </div>
             {% endfor %}
         </div>
