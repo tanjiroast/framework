@@ -1,10 +1,6 @@
+<h2>Commandes </h2>
 <div class="ui inverted segment">
-    <div class="ui teal label">
-        <h3>Commande N° {{ order.id }}</h3>
-    </div>
-    <h4>Date du : {{ order.dateCreation }}</h4>
     <div class="ui white segment">
-
         <div class="ui inverted relaxed divided list">
             <div class="item">
                 <div class="ui segment">
@@ -53,8 +49,4 @@
         </div>
     </div>
     <br>
-    <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
-        <i class="shopping bag icon"></i>
-        Voir les commandes
-    </button>
 </div>
